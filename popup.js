@@ -27,7 +27,11 @@ function getCurrentTabUrl(callback) {
     // A tab is a plain object that provides information about the tab.
     // See https://developer.chrome.com/extensions/tabs#type-Tab
     var url = tab.url;
+<<<<<<< HEAD
 
+=======
+    console.log("Working");
+>>>>>>> a3c77c28bfac1dc150bf826d2d9899542b640a90
     // tab.url is only available if the "activeTab" permission is declared.
     // If you want to see the URL of other tabs (e.g. after removing active:true
     // from |queryInfo|), then the "tabs" permission is required to see their
@@ -59,8 +63,14 @@ function changeBackgroundColor(color) {
   // into a page. Since we omit the optional first argument "tabId", the script
   // is inserted into the active tab of the current window, which serves as the
   // default.
+<<<<<<< HEAD
   chrome.tabs.executeScript({
     code: script
+=======
+  var testScript = 'console.log("please work")';
+  chrome.tabs.executeScript({
+    code: testScript,
+>>>>>>> a3c77c28bfac1dc150bf826d2d9899542b640a90
   });
 }
 
@@ -123,4 +133,20 @@ document.addEventListener('DOMContentLoaded', () => {
       saveBackgroundColor(url, dropdown.value);
     });
   });
+<<<<<<< HEAD
+=======
+
+
+  //var extensionVerifyCode = "$( \"<p>Extension is ACTING!!</p>\" ).insertAfter( \"#olderSiblingofExtensionVerify\" );";
+  $("<p>Extension is ACTING!!</p>" ).insertAfter( "#olderSiblingofExtensionVerify" );
+  /*chrome.tabs.executeScript({
+    code: extensionVerifyCode
+  });*/
+
+  // This is where we put the link code
+  //chrome.tabs.executeScript({
+  //  console.log("I am WORKING!!!");
+  //});
+
+>>>>>>> a3c77c28bfac1dc150bf826d2d9899542b640a90
 });
