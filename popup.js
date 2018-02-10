@@ -1,6 +1,3 @@
-// Copyright (c) 2014 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
 
 /**
  * Get the current URL.
@@ -31,8 +28,8 @@ function getCurrentTabUrl(callback) {
     // If you want to see the URL of other tabs (e.g. after removing active:true
     // from |queryInfo|), then the "tabs" permission is required to see their
     // "url" properties.
-    console.log("Testing to see if I can find url");
-    console.log(url);
+    //console.log("Testing to see if I can find url");
+    //console.log(url);
     console.assert(typeof url == 'string', 'tab.url should be a string');
 
     callback(url);
@@ -127,12 +124,11 @@ document.addEventListener('DOMContentLoaded', () => {
 //  var testScript = 'console.log("youtube updater javascript working")';
 
   var tester = document.getElementById("olderSiblingofExtensionVerify").textContent;
-  console.log("This did work");
-  console.log(tester);
+  //console.log("This did work");
+  //console.log(tester);
   document.getElementById("extensionVerifier").textContent = "Extension working";
   var testScript = 'console.log("youtube updater javascript working")';
-  var testScript2 = 'console.log($("#olderSiblingofExtensionVerify").val())';
-  var testScript3 = 'console.log("testing stuff")';
+
 
   chrome.tabs.executeScript({
     code: testScript
@@ -145,14 +141,19 @@ document.addEventListener('DOMContentLoaded', () => {
   chrome.tabs.query(queryInfo, (tabs) => {
     var tab = tabs[0];
     var url = tab.url;
-    var urlToBeExamined = url;
-    console.log("found url!");
+    urlToBeExamined = url;
+    console.log("found url on the query!");
     console.log(urlToBeExamined);
 
-    callback(url);
+    document.getElementById("linkDisplayer").textContent = urlToBeExamined;
+    if ("https://www.youtube.com/feed/subscriptions" == urlToBeExamined || "http://www.youtube.com/feed/subscriptions" == urlToBeExamined) {
+      console.log("We are on the youtube feed page");
+      document.getElementById("urlVerifier").textContent = "Verified";
+    }
+
+    document.getElementById("subscriptionScraper").addEventListener('click',  () => {
+        console.log("Button clicked!");
+    });
+
   });
-  console.log("This is urlVerifier before assingment " + urlToBeExamined);
-  document.getElementById("urlVerifier").textContent = urlToBeExamined;
-
-
 });
