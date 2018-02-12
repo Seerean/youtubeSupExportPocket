@@ -28,8 +28,6 @@ function getCurrentTabUrl(callback) {
     // If you want to see the URL of other tabs (e.g. after removing active:true
     // from |queryInfo|), then the "tabs" permission is required to see their
     // "url" properties.
-    //console.log("Testing to see if I can find url");
-    //console.log(url);
     console.assert(typeof url == 'string', 'tab.url should be a string');
 
     callback(url);
@@ -128,11 +126,12 @@ document.addEventListener('DOMContentLoaded', () => {
   //console.log(tester);
   document.getElementById("extensionVerifier").textContent = "Extension working";
   var testScript = 'console.log("youtube updater javascript working")';
-
+  var testScript2 = 'var dailyFeed = document.getElementById("items"); console.log(dailyFeed)';
 
   chrome.tabs.executeScript({
-    code: testScript
+    code: testScript2
   });
+
   var urlToBeExamined = " url not verified ";
   var queryInfo = {
     active: true,
@@ -150,10 +149,10 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log("We are on the youtube feed page");
       document.getElementById("urlVerifier").textContent = "Verified";
     }
-
     document.getElementById("subscriptionScraper").addEventListener('click',  () => {
         console.log("Button clicked!");
     });
-
   });
+
+  console.log("This log message goes nowhere, put it in a chrome.tabs");
 });
