@@ -119,15 +119,12 @@ document.addEventListener('DOMContentLoaded', () => {
       saveBackgroundColor(url, dropdown.value);
     });
   });
-//  var testScript = 'console.log("youtube updater javascript working")';
 
   var tester = document.getElementById("olderSiblingofExtensionVerify").textContent;
-  //console.log("This did work");
-  //console.log(tester);
+  //Updates the text fields in the popup
   document.getElementById("extensionVerifier").textContent = "Extension working";
-  var testScript = 'console.log("youtube updater javascript working")';
-  var testScript2 = 'var dailyFeed = document.getElementById("items"); console.log(dailyFeed)';
-
+  var testScript = 'console.log("youtube updater javascript working")'; // this would output on original page
+  var testScript2 = 'var dailyFeed = document.getElementById("items"); console.log(dailyFeed)'; // this would output on original page
   chrome.tabs.executeScript({
     code: testScript2
   });
@@ -154,5 +151,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  console.log("This log message goes nowhere, put it in a chrome.tabs");
+  var http = new XMLHttpRequest();
+  var url = "https://getpocket.com/v3/oauth/request";
+  var params = "consumer_key=74855-cd72929ed5dae522bbd40fe6&redirect_uri=pocketapp1234:authorizationFinished";
+  http.open("POST", url, true);
+  http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  http.onreadystatechange = function() {//Call a function when the state changes.
+    if(http.readyState == 4 && http.status == 200) {
+        console.log(http.responseText);
+        console.log("Hello");
+    }
+  }
+  http.send(params);
+  /*
+
+  POST /v3/oauth/request HTTP/1.1
+  Host: getpocket.com
+  Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+  X-Accept: application/x-www-form-urlencoded
+
+  consumer_key=1234-abcd1234abcd1234abcd1234&
+  redirect_uri=pocketapp1234:authorizationFinished
+  */
+  console.log("This log message just goes to popup console, put in a chrome.tabs to get real browser");
 });
