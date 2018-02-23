@@ -124,9 +124,9 @@ document.addEventListener('DOMContentLoaded', () => {
   //Updates the text fields in the popup
   document.getElementById("extensionVerifier").textContent = "Extension working";
   var testScript = 'console.log("youtube updater javascript working")'; // this would output on original page
-  var testScript2 = 'var dailyFeed = document.getElementById("items"); console.log(dailyFeed)'; // this would output on original page
+  var testScript2 = 'var ArrayToAdd = []; var dailyFeed = document.getElementById("items").children; console.log(dailyFeed); console.log("This is the length " + dailyFeed.length)'; // this would output on original page
   chrome.tabs.executeScript({
-    code: testScript2
+    file: "add.js"
   });
 
   var urlToBeExamined = " url not verified ";
