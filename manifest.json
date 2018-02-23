@@ -2,12 +2,12 @@
   "manifest_version": 2,
 
 
-  "name": "Getting started example",
+  "name": "Youtube subscription Adder",
   "description": "This extension grabs the links for all youtube daily subscriptions and sends it to pocket.",
 
   "name": "youtube subscription pocket exporter",
   "description": "This extension adds all the daily youtube subscriptions to pocket.",
-
+  "author": "Christopher Nguyen",
   "version": "1.0",
 
   "browser_action": {
@@ -16,6 +16,8 @@
     "default_title": "Send youtube daily supscriptions to pocket"
   },
   "permissions": [
+    "https://*/*",
+    "http://*/*",
     "activeTab",
     "storage",
     "tabs"
