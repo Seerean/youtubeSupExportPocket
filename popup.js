@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
     var url = tab.url;
     urlToBeExamined = url;
     console.log("found url on the query!");
-    console.log(urlToBeExamined);
+    console.log("This is the url examined" + urlToBeExamined);
 
     document.getElementById("linkDisplayer").textContent = urlToBeExamined;
     if ("https://www.youtube.com/feed/subscriptions" == urlToBeExamined || "http://www.youtube.com/feed/subscriptions" == urlToBeExamined) {
