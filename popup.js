@@ -125,9 +125,22 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById("extensionVerifier").textContent = "Extension working";
   var testScript = 'console.log("youtube updater javascript working")'; // this would output on original page
   var testScript2 = 'var ArrayToAdd = []; var dailyFeed = document.getElementById("items").children; console.log(dailyFeed); console.log("This is the length " + dailyFeed.length)'; // this would output on original page
+
   chrome.tabs.executeScript({
     file: "add.js"
   });
+
+
+  /*
+  var getText = Array();
+  chrome.tabs.executeScript(tabs[tab].id, {
+      "code": "document.getElementById(\"_Your_ID_Here_\").innerText.split(' ')"
+  }, function (result) {
+      for (i = 0; i < result[0].length; i++)
+      getText [i] = result[0][i];
+      console.log(getText);
+  });
+  */
 
   var urlToBeExamined = " url not verified ";
   var queryInfo = {
@@ -148,6 +161,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     document.getElementById("subscriptionScraper").addEventListener('click',  () => {
         console.log("Button clicked!");
+        var arrayOfYoutubeLinks = Array();
+        chrome.tabs.executeScript({
+          file: "extractTest.js"
+        }, function (result) {
+            console.log(result);
+            console.log("Tried to extract");
+        });
     });
   });
 

@@ -1,5 +1,6 @@
 var ArrayToAdd = [];
 var dailyFeed = document.getElementById("items").children;
+console.log("This is the dailyFeed");
 console.log(dailyFeed);
 console.log("This is the length " + dailyFeed.length);
 console.log(dailyFeed[1].children[0].children[0].children[0].href);
