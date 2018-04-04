@@ -123,52 +123,19 @@ document.addEventListener('DOMContentLoaded', () => {
   var tester = document.getElementById("olderSiblingofExtensionVerify").textContent;
   //Updates the text fields in the popup
   document.getElementById("extensionVerifier").textContent = "Extension working";
-  var testScript = 'console.log("youtube updater javascript working")'; // this would output on original page
-  var testScript2 = 'var ArrayToAdd = []; var dailyFeed = document.getElementById("items").children; console.log(dailyFeed); console.log("This is the length " + dailyFeed.length)'; // this would output on original page
-
-  chrome.tabs.executeScript({
-    file: "add.js"
-  });
 
 
-  /*
-  var getText = Array();
-  chrome.tabs.executeScript(tabs[tab].id, {
-      "code": "document.getElementById(\"_Your_ID_Here_\").innerText.split(' ')"
-  }, function (result) {
-      for (i = 0; i < result[0].length; i++)
-      getText [i] = result[0][i];
-      console.log(getText);
-  });
-  */
+  onSubscriptionPage.verifyPage();
 
-  var urlToBeExamined = " url not verified ";
-  var queryInfo = {
-    active: true,
-    currentWindow: true
-  };
-  chrome.tabs.query(queryInfo, (tabs) => {
-    var tab = tabs[0];
-    var url = tab.url;
-    urlToBeExamined = url;
-    console.log("found url on the query!");
-    console.log("This is the url examined" + urlToBeExamined);
-
-    document.getElementById("linkDisplayer").textContent = urlToBeExamined;
-    if ("https://www.youtube.com/feed/subscriptions" == urlToBeExamined || "http://www.youtube.com/feed/subscriptions" == urlToBeExamined) {
-      console.log("We are on the youtube feed page");
-      document.getElementById("urlVerifier").textContent = "Verified";
-    }
-    document.getElementById("subscriptionScraper").addEventListener('click',  () => {
-        console.log("Button clicked!");
-        var arrayOfYoutubeLinks = Array();
-        chrome.tabs.executeScript({
-          file: "extractTest.js"
-        }, function (result) {
-            console.log(result);
-            console.log("Tried to extract");
-        });
-    });
+  document.getElementById("subscriptionScraper").addEventListener('click',  () => {
+      console.log("Button clicked!");
+      var arrayOfYoutubeLinks = Array();
+      chrome.tabs.executeScript({
+        file: "extract.js"
+      }, function (result) {
+          console.log("This is the array of links to add");
+          console.log(result);
+      });
   });
 
   var http = new XMLHttpRequest();
@@ -178,8 +145,8 @@ document.addEventListener('DOMContentLoaded', () => {
   http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   http.onreadystatechange = function() {//Call a function when the state changes.
     if(http.readyState == 4 && http.status == 200) {
+        console.log("This is the request token");
         console.log(http.responseText);
-        console.log("Hello");
     }
   }
   http.send(params);
