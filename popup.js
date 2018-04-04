@@ -33,14 +33,6 @@ function getCurrentTabUrl(callback) {
     callback(url);
   });
 
-  // Most methods of the Chrome extension APIs are asynchronous. This means that
-  // you CANNOT do something like this:
-  //
-  // var url;
-  // chrome.tabs.query(queryInfo, (tabs) => {
-  //   url = tabs[0].url;
-  // });
-  // alert(url); // Shows "undefined", because chrome.tabs.query is async.
 }
 
 /**
@@ -120,27 +112,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  var tester = document.getElementById("olderSiblingofExtensionVerify").textContent;
-  //Updates the text fields in the popup
-  document.getElementById("extensionVerifier").textContent = "Extension working";
-
+  $("#extensionVerifier").text("Extension working");
 
   onSubscriptionPage.verifyPage();
-
   document.getElementById("subscriptionScraper").addEventListener('click',  () => {
       console.log("Button clicked!");
-      var arrayOfYoutubeLinks = Array();
       chrome.tabs.executeScript({
         file: "extract.js"
       }, function (result) {
           console.log("This is the array of links to add");
           console.log(result);
+          // Putting authentication here. Later, we will have this as first stage.
+          console.log("This is the isAuthenticated result")
+          console.log(!authYoutubeToPocket.isAuthenticated());
+          authYoutubeToPocket.authenticate();
       });
   });
 
   var http = new XMLHttpRequest();
   var url = "https://getpocket.com/v3/oauth/request";
-  var params = "consumer_key=74855-cd72929ed5dae522bbd40fe6&redirect_uri=pocketapp1234:authorizationFinished";
+  var params = "consumer_key=74855-cd72929ed5dae522bbd40fe6&redirect_uri=https://getpocket.com/";
   http.open("POST", url, true);
   http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   http.onreadystatechange = function() {//Call a function when the state changes.
@@ -150,15 +141,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   http.send(params);
-  /*
 
-  POST /v3/oauth/request HTTP/1.1
-  Host: getpocket.com
-  Content-Type: application/x-www-form-urlencoded; charset=UTF-8
-  X-Accept: application/x-www-form-urlencoded
-
-  consumer_key=1234-abcd1234abcd1234abcd1234&
-  redirect_uri=pocketapp1234:authorizationFinished
-  */
   console.log("This log message just goes to popup console, put in a chrome.tabs to get real browser");
 });

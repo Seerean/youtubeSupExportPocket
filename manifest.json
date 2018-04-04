@@ -5,7 +5,6 @@
   "description": "This extension adds all the daily youtube subscriptions to pocket.",
   "author": "Christopher Nguyen",
   "version": "1.0",
-
   "browser_action": {
     "default_icon": "youtube2pocket.png",
     "default_popup": "popup.html",
