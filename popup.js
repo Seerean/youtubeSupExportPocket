@@ -115,6 +115,9 @@ document.addEventListener('DOMContentLoaded', () => {
   $("#extensionVerifier").text("Extension working");
 
   onSubscriptionPage.verifyPage();
+  if (!authYoutubeToPocket.isAuthenticated() === true) {
+    $('#pocketAuthenticationVerifier').text('Authentication worked');
+  }  
   document.getElementById("subscriptionScraper").addEventListener('click',  () => {
       console.log("Button clicked!");
       chrome.tabs.executeScript({
@@ -128,19 +131,9 @@ document.addEventListener('DOMContentLoaded', () => {
           authYoutubeToPocket.authenticate();
       });
   });
-
-  var http = new XMLHttpRequest();
-  var url = "https://getpocket.com/v3/oauth/request";
-  var params = "consumer_key=74855-cd72929ed5dae522bbd40fe6&redirect_uri=https://getpocket.com/";
-  http.open("POST", url, true);
-  http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  http.onreadystatechange = function() {//Call a function when the state changes.
-    if(http.readyState == 4 && http.status == 200) {
-        console.log("This is the request token");
-        console.log(http.responseText);
-    }
-  }
-  http.send(params);
+  document.getElementById("clearTokenButton").addEventListener('click', () => {
+    authYoutubeToPocket.logout();
+  });
 
   console.log("This log message just goes to popup console, put in a chrome.tabs to get real browser");
 });
