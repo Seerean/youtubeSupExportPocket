@@ -1,7 +1,8 @@
 $(document).ready(function()
 {
-	Auth.getAccessToken(function()
+	console.log("login.js is working");
+	authYoutubeToPocket.convertAccessToken(function()
 	{
-		$('#login_text').html('<h3>Hey ' + localStorage['username'] +' authentication completed.');
+		$('#login_text').html('<h3>Hey ' + localStorage['youtube2pocket_username'] +' authentication completed.');
 	});
 });

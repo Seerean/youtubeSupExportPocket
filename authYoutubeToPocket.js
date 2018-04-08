@@ -4,6 +4,9 @@ var authYoutubeToPocket =
   isAuthenticated : function ()
     {
       console.log("Will add access token protection later, probably pocket_access_token");
+      console.log(localStorage['youtube2pocket_access_token']);
+      console.log(localStorage['youtube2pocket_username']);
+      console.log(localStorage['youtube2pocket_request_token']);
       if (localStorage['youtube2pocket_access_token'] === undefined) {
         console.log("access token is empty");
         return false;
@@ -19,7 +22,7 @@ var authYoutubeToPocket =
       ({
         type: "POST",
         url: "https://getpocket.com/v3/oauth/request",
-        data: JSON.stringify({"consumer_key": this.consumer_key, "redirect_uri":"https://www.youtube.com/feed/subscriptions"}),
+        data: JSON.stringify({"consumer_key": this.consumer_key, "redirect_uri":"login.html"}),
         headers:
           {
             "Content-type": "application/json; charset=UTF8",
@@ -31,7 +34,8 @@ var authYoutubeToPocket =
           console.log(response_json);
           console.log(response_json.code);
           localStorage['youtube2pocket_request_token'] = request_token = response_json.code;
-          chrome.tabs.create({'url': 'https://getpocket.com/auth/authorize?request_token='+ encodeURIComponent(request_token)+'&redirect_uri='+encodeURIComponent('login.html')});
+          var redirect_uriPath = chrome.extension.getURL('login.html');
+          chrome.tabs.create({'url': 'https://getpocket.com/auth/authorize?request_token='+ encodeURIComponent(request_token)+'&redirect_uri='+encodeURIComponent(redirect_uriPath)});
         } ,
         error: function(xhr, status, errorThrown)
         {
@@ -42,9 +46,10 @@ var authYoutubeToPocket =
 
     },
   convertAccessToken : function(callback) {
+    console.log('convertAccessToken is working');
     $.ajax
     ({
-      url: "https://getpocket.com/v3/oauth/request",
+      url: "https://getpocket.com/v3/oauth/authorize",
       type: "POST",
       headers:
       {
@@ -65,6 +70,7 @@ var authYoutubeToPocket =
       failure: function(xhr, status, errorThrown)
       {
         console.log("No access token made");
+        console.log()
       }
     })
   }

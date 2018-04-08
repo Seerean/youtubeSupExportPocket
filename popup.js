@@ -115,9 +115,9 @@ document.addEventListener('DOMContentLoaded', () => {
   $("#extensionVerifier").text("Extension working");
 
   onSubscriptionPage.verifyPage();
-  if (!authYoutubeToPocket.isAuthenticated() === true) {
+  if (authYoutubeToPocket.isAuthenticated() === true) {
     $('#pocketAuthenticationVerifier').text('Authentication worked');
-  }  
+  }
   document.getElementById("subscriptionScraper").addEventListener('click',  () => {
       console.log("Button clicked!");
       chrome.tabs.executeScript({
