@@ -118,21 +118,23 @@ document.addEventListener('DOMContentLoaded', () => {
   if (authYoutubeToPocket.isAuthenticated() === true) {
     $('#pocketAuthenticationVerifier').text('Authentication worked');
   }
-  document.getElementById("subscriptionScraper").addEventListener('click',  () => {
-      console.log("Button clicked!");
-      chrome.tabs.executeScript({
-        file: "extract.js"
-      }, function (result) {
-          console.log("This is the array of links to add");
-          console.log(result);
-          // Putting authentication here. Later, we will have this as first stage.
-          console.log("This is the isAuthenticated result")
-          console.log(!authYoutubeToPocket.isAuthenticated());
-          authYoutubeToPocket.authenticate();
-      });
+  document.getElementById("authenticateButton").addEventListener('click',  () => {
+      console.log("This is the isAuthenticated result")
+      console.log(!authYoutubeToPocket.isAuthenticated());
+      authYoutubeToPocket.authenticate();
+
   });
   document.getElementById("clearTokenButton").addEventListener('click', () => {
     authYoutubeToPocket.logout();
+  });
+  document.getElementById("YoutubeScrapeToPocket").addEventListener('click', () => {
+    chrome.tabs.executeScript({
+      file: "extract.js"
+    }, function (result) {
+
+        //console.log(result);
+        addToPocket.YoutubeSubsToPocket(result);
+    });
   });
 
   console.log("This log message just goes to popup console, put in a chrome.tabs to get real browser");
