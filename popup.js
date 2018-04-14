@@ -2,9 +2,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
 
-  $("#extensionVerifier").text("Extension working");
 
-  onSubscriptionPage.verifyPage();
+  console.log("This is the page verifier " + onSubscriptionPage.verifyPage());
   if (authYoutubeToPocket.isAuthenticated() === true) {
     $('#pocketAuthenticationVerifier').text('Authentication worked');
   }
@@ -22,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
       file: "extract.js"
     }, function (result) {
 
-        //console.log(result);
         addToPocket.YoutubeSubsToPocket(result);
     });
   });

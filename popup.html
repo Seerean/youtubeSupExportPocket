@@ -1,37 +1,8 @@
 <!doctype html>
-<!--
- This page is shown when the extension button is clicked, because the
- "browser_action" field in manifest.json contains the "default_popup" key with
- value "popup.html".
- -->
+
 <html>
   <head>
-    <title>Getting Started Extension's Popup</title>
     <title>Menu for Youtube Pocket Export</title>
-    <style type="text/css">
-      body {
-        margin: 10px;
-        white-space: nowrap;
-      }
-
-      h1 {
-        font-size: 15px;
-      }
-
-      #container {
-        align-items: center;
-        display: flex;
-        justify-content: space-between;
-      }
-    </style>
-
-    <!--
-      - JavaScript and HTML must be in separate files: see our Content Security
-      - Policy documentation[1] for details and explanation.
-      -
-      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
-    -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/core.js"></script> -->
     <script src="jquery-3.3.1.min.js"></script>
     <script src="popup.js"></script>
     <script src="onSubscriptionPage.js"></script>
@@ -41,12 +12,9 @@
 
   <body>
     <div id="subscriptionPageTester">
-      <p id="olderSiblingofExtensionVerify"> Testing if extension is working </p>
-      <p id="extensionVerifier"> This did not work. </p>
-      <p> This is the link we are on </p>
-      <p id="linkDisplayer"> Link not displayed </p>
-      <p> Testing if we can verify we are on youtube subscription page</p>
-      <p id="urlVerifier"> url not verified </p>
+      <p> Make sure you are at https://www.youtube.com/feed/subscriptions</p>
+      <p> This will inform you if you are on the youtube subscription page.</p>
+      <p id="urlVerifier"> You are not on the youtube subscription page.</p>
       <button id="authenticateButton">Authenticate</button>
       <p> Testing if we are authenticated </p>
       <p id="pocketAuthenticationVerifier"> Not authenticated </p>
