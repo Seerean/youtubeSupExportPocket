@@ -20,8 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     chrome.tabs.executeScript({
       file: "extract.js"
     }, function (result) {
-
-        addToPocket.YoutubeSubsToPocket(result);
+      addToPocket.YoutubeSubsToPocket(result);
     });
   });
 
