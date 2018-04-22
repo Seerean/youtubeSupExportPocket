@@ -35,7 +35,7 @@ var authYoutubeToPocket =
           console.log(response_json.code);
           localStorage['youtube2pocket_request_token'] = request_token = response_json.code;
           var redirect_uriPath = chrome.extension.getURL('login.html');
-          chrome.tabs.create({'url': 'https://getpocket.com/auth/authorize?request_token='+ encodeURIComponent(request_token)+'&redirect_uri='+encodeURIComponent(redirect_uriPath)});
+          chrome.tabs.create({'url': 'https://getpocket.com/auth/authorize?request_token='+ request_token+'&redirect_uri='+redirect_uriPath});
         } ,
         error: function(xhr, status, errorThrown)
         {
