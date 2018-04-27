@@ -12,15 +12,20 @@
 
   <body>
     <div id="subscriptionPageTester">
-      <p> Make sure you are at https://www.youtube.com/feed/subscriptions</p>
-      <p> This will inform you if you are on the youtube subscription page.</p>
-      <p id="urlVerifier"> You are not on the youtube subscription page.</p>
+      <h3> 1) Verify on Youtube Subscription URL. </h3>
+      <p> Make sure you are at <a target="_blank" href="https://www.youtube.com/feed/subscriptions">https://www.youtube.com/feed/subscriptions</a></p>
+      <p id="urlVerifier"> </p>
+      <h3> 2) Authenticate extension with pocket </h3>
+      <p> If button is disabled, you are aleady authenticated and can move to step 3. </p>
+      <p> Pocket may have trouble redirecting you to the final authentication page. The following link will finish if trouble redirecting.</p>
+      <p> <a id="authenticationPage" > Final Authentication Page </a> </p>
       <button id="authenticateButton">Authenticate</button>
-      <p> Testing if we are authenticated </p>
-      <p id="pocketAuthenticationVerifier"> Not authenticated </p>
-      <button id="clearTokenButton">Deletes all tokens</button>
-      <br>
-      <button id="YoutubeScrapeToPocket">Add to Pocket</button>
+      <h3> 3) Add videos to pocket. DO NOT PRESS TWICE, check your pocket before pressing again.</h3>
+      <button id="YoutubeScrapeToPocket">Scrape to Pocket</button>
+      <h3> 4) Deauthenticate and logout.</h4>
+      <p> Press button to log your account out. Go to link to revoke permission.</p>
+      <p><a href="https://getpocket.com/connected_applications">https://getpocket.com/connected_applications</a></p>
+      <button id="clearTokenButton">Log extension out of Pocket</button>
     </div>
 
   </body>

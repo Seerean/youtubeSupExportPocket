@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
 
 
+  authYoutubeToPocket.isAuthenticated();
+  var redirect_uriPath = chrome.extension.getURL('login.html');
+  document.getElementById("authenticationPage").setAttribute('href', redirect_uriPath);
 
   console.log("This is the page verifier " + onSubscriptionPage.verifyPage());
-  if (authYoutubeToPocket.isAuthenticated() === true) {
-    $('#pocketAuthenticationVerifier').text('You are authenticated and can add');
-  }
   document.getElementById("authenticateButton").addEventListener('click',  () => {
       //console.log("This is the isAuthenticated result")
       //console.log(!authYoutubeToPocket.isAuthenticated());

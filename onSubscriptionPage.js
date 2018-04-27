@@ -16,9 +16,13 @@ var onSubscriptionPage =
 
       if ("https://www.youtube.com/feed/subscriptions" == urlToBeExamined || "http://www.youtube.com/feed/subscriptions" == urlToBeExamined) {
         console.log("We are on the youtube feed page");
-        document.getElementById("urlVerifier").textContent = "You are at the youtube subscription page.";
+        document.getElementById("urlVerifier").textContent = "VERIFIED. Go to step 2.";
+        document.getElementById("YoutubeScrapeToPocket").disabled = false;
+        return true;
       } else {
-
+        document.getElementById("urlVerifier").textContent = "NOT VERIFIED. Go to youtube feed page";
+        document.getElementById("YoutubeScrapeToPocket").disabled = true;
+        return false;
       }
     });
 

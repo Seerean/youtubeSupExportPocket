@@ -9,8 +9,11 @@ var authYoutubeToPocket =
       console.log(localStorage['youtube2pocket_request_token']);
       if (localStorage['youtube2pocket_access_token'] === undefined) {
         console.log("access token is empty");
+        document.getElementById("authenticateButton").disabled = false;
+        document.getElementById("clearTokenButton").disabled = true;     
         return false;
       } else {
+        document.getElementById("authenticateButton").disabled = true;
         return true;
       }
     },
