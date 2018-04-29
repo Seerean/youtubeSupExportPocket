@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
 
-  "name": "youtube subscription pocket exporter",
+  "name": "YouTube Subscriptions to Pocket",
   "description": "This extension adds all the daily youtube subscriptions to pocket.",
   "author": "Christopher Nguyen",
   "version": "1.0",
