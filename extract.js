@@ -1,3 +1,4 @@
+window.location.reload();
 var dailyFeed = document.getElementById("items").children;
 var ArrayToExtract = [];
 console.log("This is the extract when interacting in real page");
